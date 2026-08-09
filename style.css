@@ -1,128 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
-    background: #09070f;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(circle at 50% 40%, #211226 0%, #09070d 60%);
     color: white;
-    font-family: monospace;
+
+    font-family: "Press Start 2P", monospace;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+
+    overflow: hidden;
+
     image-rendering: pixelated;
 }
 
-#game-wrapper {
-    text-align: center;
+
+/* =========================
+   JOGO
+========================= */
+
+#gameContainer {
+    width: min(940px, 96vw);
+
+    opacity: 1;
+
+    transition: opacity 0.5s;
 }
 
-h1 {
-    color: #ff174f;
-    font-size: 28px;
-    text-shadow: 4px 4px #3b0a21;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-}
+header {
+    height: 55px;
 
-#hud {
-    width: 800px;
+    background: #120d18;
+
+    border: 4px solid #ff1754;
+
     display: flex;
+
     justify-content: space-between;
-    background: #17121f;
-    border: 4px solid #ff174f;
-    padding: 10px 15px;
-    font-size: 14px;
+    align-items: center;
+
+    padding: 0 18px;
+
+    box-shadow:
+        6px 6px 0 #390b20,
+        inset 0 -3px 0 #5e1233;
 }
 
-#status {
-    color: #ffcf3f;
+.logo {
+    color: #ffffff;
+
+    font-size: 13px;
+
+    text-shadow:
+        3px 3px #ff1754;
+}
+
+#alertText {
+    font-size: 9px;
+
+    color: #ffd21c;
+
+    transition: 0.2s;
+}
+
+#gameFrame {
+    background: #08070b;
+
+    border-left: 4px solid #ff1754;
+    border-right: 4px solid #ff1754;
+
+    position: relative;
 }
 
 canvas {
+    width: 100%;
+    height: auto;
+
     display: block;
-    width: 800px;
-    height: 500px;
-    border-left: 4px solid #ff174f;
-    border-right: 4px solid #ff174f;
-    border-bottom: 4px solid #ff174f;
-    background: #111;
+
+    background: #100d15;
+
+    image-rendering: pixelated;
 }
 
-#controls {
-    color: #aaa;
-    margin-top: 12px;
-    font-size: 12px;
+.bottomBar {
+    height: 45px;
+
+    background: #120d18;
+
+    border: 4px solid #ff1754;
+    border-top: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-around;
+
+    color: #9b8ca5;
+
+    font-size: 7px;
 }
+
+
+/* =========================
+   TELAS
+========================= */
 
 .screen {
     position: fixed;
+
     inset: 0;
-    background: rgba(5, 3, 10, 0.94);
+
+    z-index: 20;
+
     display: none;
+
     justify-content: center;
     align-items: center;
-    z-index: 10;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(38, 15, 45, 0.96),
+            rgba(4, 3, 8, 0.99)
+        );
 }
 
 .screen.active {
     display: flex;
 }
 
-.screen-box,
-.victory-box {
-    background: #17121f;
-    border: 5px solid #ff174f;
-    padding: 35px;
+
+/* =========================
+   TELA INICIAL
+========================= */
+
+.startBox {
+    width: min(650px, 90vw);
+
     text-align: center;
-    max-width: 650px;
-    box-shadow: 12px 12px 0 #3b0a21;
+
+    padding: 45px;
+
+    background: #100c16;
+
+    border: 5px solid #ff1754;
+
+    box-shadow:
+        12px 12px 0 #3a0b21,
+        inset 0 0 40px rgba(255, 23, 84, 0.08);
+
+    transform: rotate(-1deg);
 }
 
-.screen-box h2,
-.victory-box h2 {
-    color: #ff174f;
-    font-size: 30px;
-    margin-top: 0;
+.butterfly {
+    font-size: 50px;
+
+    margin-bottom: 20px;
+
+    animation: float 1.5s infinite alternate;
 }
+
+@keyframes float {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+.startBox h1 {
+    color: #ffffff;
+
+    font-size: 35px;
+
+    margin: 0;
+
+    text-shadow:
+        5px 5px #ff1754;
+}
+
+.startBox h2 {
+    color: #ff1754;
+
+    font-size: 30px;
+
+    margin: 12px 0 20px;
+
+    text-shadow:
+        4px 4px #4b0d29;
+}
+
+.line {
+    width: 80%;
+
+    height: 4px;
+
+    background: #ff1754;
+
+    margin: 20px auto;
+}
+
+.subtitle {
+    color: #ffd21c;
+
+    font-size: 10px;
+
+    line-height: 2;
+}
+
+.story {
+    color: #aaa;
+
+    font-family: monospace;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    margin: 25px 0;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
 
 button {
-    background: #ff174f;
-    border: 4px solid white;
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 10px;
+
     color: white;
-    padding: 12px 20px;
-    font-family: monospace;
-    font-weight: bold;
+
+    background: #ff1754;
+
+    border: 4px solid white;
+
+    padding: 18px 24px;
+
     cursor: pointer;
+
+    box-shadow:
+        6px 6px 0 #650c2c;
+
+    transition:
+        transform 0.1s,
+        background 0.1s;
 }
 
 button:hover {
-    background: white;
-    color: #ff174f;
+    background: #ff4a78;
+
+    transform: translate(3px, 3px);
+
+    box-shadow:
+        3px 3px 0 #650c2c;
 }
 
-.small-title {
-    color: #ffcf3f;
-    letter-spacing: 5px;
+button:active {
+    transform: translate(6px, 6px);
+
+    box-shadow: none;
 }
 
-.couple-photo {
-    width: 100%;
-    max-width: 500px;
-    max-height: 300px;
-    object-fit: cover;
-    image-rendering: auto;
-    border: 5px solid white;
-    box-shadow: 8px 8px 0 #ff174f;
+.controls {
+    margin-top: 30px;
+
+    color: #66596d;
+
+    font-size: 7px;
 }
 
-.love-message {
-    color: #fff;
-    font-size: 18px;
-    line-height: 1.5;
+
+/* =========================
+   DERROTA
+========================= */
+
+.messageBox {
+    text-align: center;
+
+    width: min(600px, 90vw);
+
+    padding: 45px;
+
+    background: #110a12;
+
+    border: 5px solid #ff1754;
+
+    box-shadow: 10px 10px 0 #3c0921;
 }
 
-.final-message {
+.bigIcon {
+    font-size: 60px;
+
+    margin-bottom: 20px;
+}
+
+.messageBox h1 {
+    color: #ff1754;
+
+    font-size: 25px;
+}
+
+.messageBox p {
     color: #aaa;
+
+    font-family: monospace;
+
+    font-size: 17px;
+
+    margin: 25px;
+}
+
+
+/* =========================
+   VITÓRIA
+========================= */
+
+.winBox {
+    width: min(750px, 94vw);
+
+    max-height: 94vh;
+
+    overflow-y: auto;
+
+    text-align: center;
+
+    padding: 35px;
+
+    background: #100c16;
+
+    border: 5px solid #ff1754;
+
+    box-shadow:
+        12px 12px 0 #430b25;
+}
+
+.missionComplete {
+    color: #ffd21c;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.winBox h1 {
+    color: #ff1754;
+
+    font-size: 32px;
+
+    text-shadow:
+        4px 4px #450b26;
+
+    margin: 20px 0;
+}
+
+.forMilenete {
+    color: white;
+
+    font-size: 10px;
+
+    line-height: 2;
+
+    margin-bottom: 25px;
+}
+
+.couplePhoto {
+    display: block;
+
+    width: 100%;
+
+    max-width: 580px;
+
+    max-height: 330px;
+
+    object-fit: contain;
+
+    margin: 0 auto 25px;
+
+    border: 5px solid white;
+
+    box-shadow:
+        8px 8px 0 #ff1754;
+}
+
+.loveText {
+    color: white;
+
+    font-family: monospace;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin: 25px 0;
+}
+
+.smallText {
+    color: #8d7c96;
+
+    font-family: monospace;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .startBox {
+        padding: 25px;
+    }
+
+    .startBox h1 {
+        font-size: 23px;
+    }
+
+    .startBox h2 {
+        font-size: 20px;
+    }
+
+    .story {
+        font-size: 13px;
+    }
+
+    .bottomBar {
+        font-size: 5px;
+    }
+
+    #alertText {
+        font-size: 6px;
+    }
+
+    .winBox {
+        padding: 20px;
+    }
+
+    .winBox h1 {
+        font-size: 22px;
+    }
+
+    .loveText {
+        font-size: 15px;
+    }
 }
