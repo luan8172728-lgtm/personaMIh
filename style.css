@@ -1,1146 +1,128 @@
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --red: #e60012;
-    --black: #050505;
-    --white: #ffffff;
-    --gray: #202020;
 }
 
 body {
-
-    background: var(--black);
-
+    margin: 0;
+    background: #09070f;
     color: white;
-
-    font-family:
-        Inter,
-        Arial,
-        sans-serif;
-
-    overflow: hidden;
-}
-
-
-button {
-
-    cursor: pointer;
-
-    font-family: inherit;
-}
-
-
-#game {
-
-    width: 100vw;
-
-    height: 100vh;
-
-    overflow: hidden;
-
-    position: relative;
-}
-
-
-.screen {
-
-    position: absolute;
-
-    inset: 0;
-
-    display: none;
-}
-
-
-.screen.active {
-
+    font-family: monospace;
     display: flex;
-
-}
-
-
-/* ========================= */
-/* TELA INICIAL */
-/* ========================= */
-
-#title-screen {
-
-    align-items: center;
-
     justify-content: center;
-
-    background:
-
-        linear-gradient(
-            120deg,
-            #080808 0%,
-            #080808 53%,
-            var(--red) 53%,
-            var(--red) 100%
-        );
-
-    transform: skewY(-2deg);
+    align-items: center;
+    min-height: 100vh;
+    image-rendering: pixelated;
 }
 
-
-.title-content {
-
-    width: min(750px, 90vw);
-
-    transform:
-        skewY(2deg)
-        rotate(-2deg);
-
+#game-wrapper {
+    text-align: center;
 }
-
-
-.eyebrow {
-
-    font-size: 13px;
-
-    font-weight: 900;
-
-    letter-spacing: 5px;
-
-    margin-bottom: 20px;
-
-}
-
 
 h1 {
-
-    font-family:
-        "Bebas Neue",
-        Impact,
-        sans-serif;
-
-    font-size:
-        clamp(
-            70px,
-            10vw,
-            140px
-        );
-
-    line-height: .78;
-
-    letter-spacing: -3px;
-
-    text-shadow:
-        8px 8px black;
-
-}
-
-
-.title-content h1 span {
-
-    background: black;
-
-    padding: 0 10px;
-
-}
-
-
-.subtitle {
-
-    margin-top: 30px;
-
-    margin-bottom: 30px;
-
-    font-size: 18px;
-
-    font-weight: 700;
-
-}
-
-
-.p5-button {
-
-    background: white;
-
-    color: black;
-
-    border: 5px solid black;
-
-    padding:
-        15px 25px;
-
-    font-weight: 900;
-
-    transform: skew(-8deg);
-
-    box-shadow:
-        8px 8px black;
-
-    transition: .15s;
-
-}
-
-
-.p5-button:hover {
-
-    transform:
-        skew(-8deg)
-        translate(-3px, -3px);
-
-    box-shadow:
-        12px 12px black;
-
-}
-
-
-.controls {
-
-    position: absolute;
-
-    bottom: 20px;
-
-    left: 25px;
-
-    font-size: 11px;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* ========================= */
-/* JOGO */
-/* ========================= */
-
-#game-screen {
-
-    background: #111;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-/* ========================= */
-/* HUD */
-/* ========================= */
-
-.hud {
-
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    right: 0;
-
-    height: 58px;
-
-    background: #050505;
-
-    border-bottom:
-        5px solid var(--red);
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    align-items: center;
-
-    padding:
-        0 25px;
-
-    z-index: 50;
-
-}
-
-
-.hud-title {
-
-    font-family:
-        "Bebas Neue";
-
+    color: #ff174f;
     font-size: 28px;
-
+    text-shadow: 4px 4px #3b0a21;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
 }
 
-
-.hud-hearts {
-
-    font-size: 20px;
-
-    font-weight: 900;
-
-}
-
-
-/* ========================= */
-/* MAPA */
-/* ========================= */
-
-#map {
-
-    position: relative;
-
-    width:
-        min(
-            1100px,
-            94vw
-        );
-
-    height:
-        min(
-            650px,
-            82vh
-        );
-
-    background: #292929;
-
-    border:
-        8px solid black;
-
-    box-shadow:
-        15px 15px black;
-
-    overflow: hidden;
-
-    background-image:
-
-        linear-gradient(
-            90deg,
-            transparent 49%,
-            #171717 50%,
-            transparent 51%
-        ),
-
-        linear-gradient(
-            0deg,
-            transparent 49%,
-            #171717 50%,
-            transparent 51%
-        );
-
-    background-size:
-        90px 90px;
-
-}
-
-
-.map-title {
-
-    position: absolute;
-
-    top: 15px;
-
-    left: 15px;
-
-    background:
-        var(--red);
-
-    padding:
-        8px 15px;
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    z-index: 10;
-
-}
-
-
-/* ========================= */
-/* SALAS */
-/* ========================= */
-
-.room {
-
-    position: absolute;
-
-    background: #353535;
-
-    border:
-        5px solid #080808;
-
-    box-shadow:
-        inset 0 0 0 4px #444;
-
-}
-
-
-.room1 {
-
-    left: 5%;
-
-    top: 14%;
-
-    width: 35%;
-
-    height: 30%;
-
-}
-
-
-.room2 {
-
-    right: 6%;
-
-    top: 14%;
-
-    width: 34%;
-
-    height: 30%;
-
-}
-
-
-.room3 {
-
-    left: 29%;
-
-    bottom: 8%;
-
-    width: 42%;
-
-    height: 34%;
-
-}
-
-
-/* ========================= */
-/* JOGADOR */
-/* ========================= */
-
-#player {
-
-    position: absolute;
-
-    width: 45px;
-
-    height: 45px;
-
-    transform:
-        translate(-50%, -50%);
-
-    z-index: 20;
-
-    transition:
-        left .08s,
-        top .08s;
-
-}
-
-
-.mask {
-
-    width: 45px;
-
-    height: 45px;
-
-    background:
-        var(--red);
-
-    border:
-        4px solid black;
-
-    border-radius:
-        50% 45% 55% 45%;
-
+#hud {
+    width: 800px;
     display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-weight: 900;
-
-    box-shadow:
-        5px 5px black;
-
-}
-
-
-/* ========================= */
-/* CORAÇÕES */
-/* ========================= */
-
-.pickup {
-
-    position: absolute;
-
-    width: 40px;
-
-    height: 40px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    color:
-        var(--red);
-
-    font-size: 30px;
-
-    text-shadow:
-        2px 2px black;
-
-    z-index: 15;
-
-    animation:
-        pulse 1s infinite alternate;
-
-}
-
-
-@keyframes pulse {
-
-    from {
-
-        transform:
-            scale(1);
-
-    }
-
-    to {
-
-        transform:
-            scale(1.2)
-            rotate(-5deg);
-
-    }
-
-}
-
-
-/* ========================= */
-/* TESOURO */
-/* ========================= */
-
-#treasure {
-
-    position: absolute;
-
-    right: 7%;
-
-    bottom: 8%;
-
-    width: 80px;
-
-    height: 80px;
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 70px;
-
-    color:
-        var(--red);
-
-    text-shadow:
-        4px 4px white,
-        8px 8px black;
-
-    animation:
-        pulse 1s infinite alternate;
-
-    z-index: 15;
-
-}
-
-
-/* ========================= */
-/* OBJETIVO */
-/* ========================= */
-
-.objective {
-
-    position: absolute;
-
-    right: 15px;
-
-    bottom: 15px;
-
-    background: black;
-
-    padding:
-        12px 15px;
-
-    width: 250px;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    z-index: 30;
-
-}
-
-
-.objective strong {
-
-    color:
-        var(--red);
-
-}
-
-
-/* ========================= */
-/* DIÁLOGO */
-/* ========================= */
-
-.dialogue {
-
-    position: absolute;
-
-    left: 50%;
-
-    bottom: 25px;
-
-    transform:
-        translateX(-50%);
-
-    width:
-        min(
-            850px,
-            90vw
-        );
-
-    background: black;
-
-    border:
-        5px solid white;
-
-    padding: 20px;
-
-    z-index: 100;
-
-    box-shadow:
-        10px 10px var(--red);
-
-}
-
-
-.dialogue-name {
-
-    display: inline-block;
-
-    background:
-        var(--red);
-
-    padding:
-        7px 15px;
-
-    font-weight: 900;
-
-    margin-top: -45px;
-
-    margin-bottom: 12px;
-
-}
-
-
-.dialogue-text {
-
-    font-size: 17px;
-
-    line-height: 1.5;
-
-    min-height: 55px;
-
-}
-
-
-.dialogue button {
-
-    float: right;
-
-    margin-top: 12px;
-
-    background: white;
-
-    border: 0;
-
-    padding:
-        8px 12px;
-
-    font-weight: 900;
-
-}
-
-
-/* ========================= */
-/* BATALHA */
-/* ========================= */
-
-.battle {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        #090909;
-
-    z-index: 200;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-.battle::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-
-        repeating-linear-gradient(
-            -18deg,
-            #080808 0 70px,
-            var(--red) 70px 85px,
-            #080808 85px 160px
-        );
-
-    opacity: .22;
-
-}
-
-
-.enemy {
-
-    position: relative;
-
-    text-align: center;
-
-}
-
-
-.enemy-icon {
-
-    font-size: 90px;
-
-    color:
-        var(--red);
-
-}
-
-
-.enemy h2 {
-
-    font-family:
-        "Bebas Neue";
-
-    font-size: 65px;
-
-}
-
-
-.hp-container {
-
-    width: 300px;
-
-    height: 14px;
-
-    background: #333;
-
-    border:
-        2px solid white;
-
-}
-
-
-#enemy-hp {
-
-    width: 100%;
-
-    height: 100%;
-
-    background:
-        var(--red);
-
-    transition: .3s;
-
-}
-
-
-.battle-log {
-
-    position: relative;
-
-    margin: 25px;
-
-    background: black;
-
-    border:
-        3px solid white;
-
-    padding:
-        12px 20px;
-
-    min-width:
-        min(
-            600px,
-            80vw
-        );
-
-    text-align: center;
-
-    font-weight: 800;
-
-}
-
-
-.battle-actions {
-
-    position: relative;
-
-    display: flex;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-}
-
-
-.battle-actions button {
-
-    background: white;
-
-    border:
-        4px solid black;
-
-    padding:
-        12px 18px;
-
-    font-weight: 900;
-
-}
-
-
-.battle-actions button:hover {
-
-    background:
-        var(--red);
-
-    color: white;
-
-}
-
-
-/* ========================= */
-/* FINAL / TESOURO */
-/* ========================= */
-
-#ending-screen {
-
-    align-items: center;
-
-    justify-content: center;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #080808 0 50%,
-            var(--red) 50% 100%
-        );
-
-}
-
-
-.ending-card {
-
-    width:
-        min(
-            720px,
-            92vw
-        );
-
-    max-height: 92vh;
-
-    overflow-y: auto;
-
-    text-align: center;
-
-    background: black;
-
-    border:
-        7px solid white;
-
-    padding: 35px;
-
-    box-shadow:
-        14px 14px black;
-
-    transform:
-        rotate(-1deg);
-
-}
-
-
-.big-heart {
-
-    color:
-        var(--red);
-
-    font-size: 100px;
-
-    text-shadow:
-        6px 6px white;
-
-}
-
-
-.ending-card h1 {
-
-    font-size:
-        clamp(
-            55px,
-            8vw,
-            95px
-        );
-
-    margin:
-        15px 0 25px;
-
-}
-
-
-.treasure-text {
-
-    font-size: 17px;
-
-    line-height: 1.6;
-
-}
-
-
-/* ========================= */
-/* FOTO DE VOCÊS */
-/* ========================= */
-
-.photo {
-
-    width: 100%;
-
-    height: 300px;
-
-    margin:
-        25px 0;
-
-    border:
-        5px solid white;
-
-    overflow: hidden;
-
-    background:
-        #111;
-
-    transform:
-        rotate(-1deg);
-
-    box-shadow:
-        8px 8px var(--red);
-
-}
-
-
-.photo img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position:
-        center 38%;
-
-    display: block;
-
-}
-
-
-.photo-caption {
-
-    color:
-        #ccc;
-
+    justify-content: space-between;
+    background: #17121f;
+    border: 4px solid #ff174f;
+    padding: 10px 15px;
     font-size: 14px;
-
-    font-weight: 800;
-
-    margin-bottom: 25px;
-
 }
 
+#status {
+    color: #ffcf3f;
+}
 
-/* ========================= */
-/* MENSAGEM FINAL */
-/* ========================= */
+canvas {
+    display: block;
+    width: 800px;
+    height: 500px;
+    border-left: 4px solid #ff174f;
+    border-right: 4px solid #ff174f;
+    border-bottom: 4px solid #ff174f;
+    background: #111;
+}
 
-#message-screen {
+#controls {
+    color: #aaa;
+    margin-top: 12px;
+    font-size: 12px;
+}
 
-    align-items: center;
-
+.screen {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 3, 10, 0.94);
+    display: none;
     justify-content: center;
-
-    background:
-        #080808;
-
+    align-items: center;
+    z-index: 10;
 }
 
+.screen.active {
+    display: flex;
+}
+
+.screen-box,
+.victory-box {
+    background: #17121f;
+    border: 5px solid #ff174f;
+    padding: 35px;
+    text-align: center;
+    max-width: 650px;
+    box-shadow: 12px 12px 0 #3b0a21;
+}
+
+.screen-box h2,
+.victory-box h2 {
+    color: #ff174f;
+    font-size: 30px;
+    margin-top: 0;
+}
+
+button {
+    background: #ff174f;
+    border: 4px solid white;
+    color: white;
+    padding: 12px 20px;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: white;
+    color: #ff174f;
+}
+
+.small-title {
+    color: #ffcf3f;
+    letter-spacing: 5px;
+}
+
+.couple-photo {
+    width: 100%;
+    max-width: 500px;
+    max-height: 300px;
+    object-fit: cover;
+    image-rendering: auto;
+    border: 5px solid white;
+    box-shadow: 8px 8px 0 #ff174f;
+}
+
+.love-message {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.5;
+}
 
 .final-message {
-
-    width:
-        min(
-            700px,
-            90vw
-        );
-
-    text-align: center;
-
-    padding: 35px;
-
-}
-
-
-.final-message h1 {
-
-    color:
-        var(--red);
-
-    font-size:
-        clamp(
-            70px,
-            11vw,
-            130px
-        );
-
-    text-shadow:
-        7px 7px white;
-
-    margin-bottom: 30px;
-
-}
-
-
-.final-message p:not(.eyebrow):not(.love) {
-
-    font-size: 19px;
-
-    line-height: 1.7;
-
-    margin:
-        17px 0;
-
-}
-
-
-.love {
-
-    color:
-        var(--red);
-
-    font-size: 40px;
-
-    font-weight: 900;
-
-    margin:
-        30px 0;
-
-}
-
-
-.signature {
-
-    font-family: cursive;
-
-    font-size: 23px;
-
-    margin-bottom: 30px;
-
-}
-
-
-/* ========================= */
-/* UTILITÁRIO */
-/* ========================= */
-
-.hidden {
-
-    display:
-        none !important;
-
-}
-
-
-/* ========================= */
-/* CELULAR */
-/* ========================= */
-
-@media(max-width: 650px) {
-
-    .objective {
-
-        width: 190px;
-
-        font-size: 9px;
-
-    }
-
-
-    .battle-actions button {
-
-        padding: 9px;
-
-        font-size: 11px;
-
-    }
-
-
-    .dialogue-text {
-
-        font-size: 14px;
-
-    }
-
-
-    .map-title {
-
-        font-size: 9px;
-
-    }
-
-
-    .photo {
-
-        height: 230px;
-
-    }
-
+    color: #aaa;
 }
