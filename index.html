@@ -3,370 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Roubar o Coração da Milenete ❤️</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
+    <title>Milenete's Shadow Heist</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="game">
+    <div id="game-wrapper">
 
-    <!-- ========================= -->
-    <!-- TELA INICIAL -->
-    <!-- ========================= -->
+        <h1>MILENETE'S SHADOW HEIST</h1>
 
-    <section id="title-screen" class="screen active">
-
-        <div class="title-content">
-
-            <p class="eyebrow">
-                A LOVE PHANTOM PRODUCTION
-            </p>
-
-            <h1>
-                ROUBAR<br>
-                <span>O CORAÇÃO</span><br>
-                DA MILENETE
-            </h1>
-
-            <p class="subtitle">
-                Uma missão impossível... ou talvez não.
-            </p>
-
-            <button id="start-btn" class="p5-button">
-                COMEÇAR A MISSÃO
-            </button>
-
+        <div id="hud">
+            <span>🦋 BIBBLE</span>
+            <span id="status">ESCORREGANDO PELAS SOMBRAS...</span>
         </div>
 
-        <p class="controls">
-            WASD ou SETAS para se mover
-        </p>
+        <canvas id="game" width="800" height="500"></canvas>
 
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- JOGO -->
-    <!-- ========================= -->
-
-    <section id="game-screen" class="screen">
-
-        <header class="hud">
-
-            <div class="hud-title">
-                MILENETE'S PALACE
-            </div>
-
-            <div class="hud-hearts">
-                ♥ <span id="heart-count">0</span>/5
-            </div>
-
-        </header>
-
-
-        <div id="map">
-
-            <div class="map-title">
-                PALACE: CORAÇÃO DE MILENETE
-            </div>
-
-
-            <!-- SALAS -->
-
-            <div class="room room1"></div>
-
-            <div class="room room2"></div>
-
-            <div class="room room3"></div>
-
-
-            <!-- CORAÇÕES -->
-
-            <div class="pickup"
-                 data-heart="1"
-                 style="left:18%;top:25%">
-                ♥
-            </div>
-
-            <div class="pickup"
-                 data-heart="2"
-                 style="left:75%;top:22%">
-                ♥
-            </div>
-
-            <div class="pickup"
-                 data-heart="3"
-                 style="left:45%;top:48%">
-                ♥
-            </div>
-
-            <div class="pickup"
-                 data-heart="4"
-                 style="left:82%;top:72%">
-                ♥
-            </div>
-
-            <div class="pickup"
-                 data-heart="5"
-                 style="left:20%;top:78%">
-                ♥
-            </div>
-
-
-            <!-- TESOURO -->
-
-            <div id="treasure">
-                ♥
-            </div>
-
-
-            <!-- JOGADOR -->
-
-            <div id="player">
-
-                <div class="mask">
-                    ★
-                </div>
-
-            </div>
-
-
-            <!-- OBJETIVO -->
-
-            <div class="objective">
-
-                <strong>OBJETIVO</strong>
-
-                <br><br>
-
-                Colete os 5 corações
-                e encontre o tesouro.
-
-            </div>
-
+        <div id="controls">
+            WASD / SETAS — MOVER &nbsp; | &nbsp; ESC — RECOMEÇAR
         </div>
 
+    </div>
 
-        <!-- ========================= -->
-        <!-- DIÁLOGO -->
-        <!-- ========================= -->
+    <!-- Tela de derrota -->
+    <div id="game-over" class="screen">
+        <div class="screen-box">
+            <h2>VOCÊ FOI DESCOBERTO!</h2>
+            <p>As sombras encontraram o Bibble...</p>
+            <button onclick="restartGame()">TENTAR NOVAMENTE</button>
+        </div>
+    </div>
 
-        <div id="dialogue" class="dialogue hidden">
+    <!-- Tela de vitória -->
+    <div id="victory" class="screen">
+        <div class="victory-box">
 
-            <div id="dialogue-name"
-                 class="dialogue-name">
-                ???
-            </div>
+            <p class="small-title">MISSÃO COMPLETA</p>
 
-            <div id="dialogue-text"
-                 class="dialogue-text">
-            </div>
+            <h2>VOCÊ CONSEGUIU, BIBBLE! 🦋</h2>
 
-            <button id="dialogue-next">
-                CONTINUAR ▶
-            </button>
+            <img
+                src="assets/foto-vitoria.jpg"
+                alt="Uma foto especial"
+                class="couple-photo"
+            >
+
+            <p class="love-message">
+                Milenete, você é a minha pessoa favorita
+                em todos os universos. ❤️
+            </p>
+
+            <p class="final-message">
+                Esse pequeno mundo foi feito especialmente para você.
+            </p>
 
         </div>
+    </div>
 
-
-        <!-- ========================= -->
-        <!-- BATALHA -->
-        <!-- ========================= -->
-
-        <div id="battle" class="battle hidden">
-
-            <div class="enemy">
-
-                <div class="enemy-icon">
-                    ☁
-                </div>
-
-                <h2 id="enemy-name">
-                    SAUDADE
-                </h2>
-
-                <div class="hp-container">
-
-                    <div id="enemy-hp"></div>
-
-                </div>
-
-            </div>
-
-
-            <div id="battle-log"
-                 class="battle-log">
-
-                Uma sombra apareceu!
-
-            </div>
-
-
-            <div class="battle-actions">
-
-                <button data-action="attack">
-                    ATAQUE ♥
-                </button>
-
-                <button data-action="love">
-                    AMOR ✦
-                </button>
-
-                <button data-action="talk">
-                    CONVERSAR ☺
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- TESOURO -->
-    <!-- ========================= -->
-
-    <section id="ending-screen"
-             class="screen">
-
-        <div class="ending-card">
-
-            <p class="eyebrow">
-                TREASURE FOUND
-            </p>
-
-
-            <div class="big-heart">
-                ♥
-            </div>
-
-
-            <h1>
-                O CORAÇÃO<br>
-                FOI ROUBADO.
-            </h1>
-
-
-            <p class="treasure-text">
-
-                Mas espera...
-
-                esse coração nunca foi
-                realmente roubado.
-
-                Porque, de algum jeito,
-                Milenete já tinha o meu.
-
-            </p>
-
-
-            <!-- FOTO DE VOCÊS -->
-
-            <div class="photo">
-
-                <img
-                    src="foto.jpg"
-                    alt="Nós dois"
-                >
-
-            </div>
-
-
-            <p class="photo-caption">
-
-                O meu verdadeiro tesouro ❤️
-
-            </p>
-
-
-            <button id="reveal-btn"
-                    class="p5-button">
-
-                ABRIR O TESOURO ❤️
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- DECLARAÇÃO FINAL -->
-    <!-- ========================= -->
-
-    <section id="message-screen"
-             class="screen">
-
-        <div class="final-message">
-
-            <p class="eyebrow">
-                PHANTOM LOVERS
-            </p>
-
-
-            <h1>
-                MILENETE,
-            </h1>
-
-
-            <p>
-
-                Entre todos os tesouros que eu
-                poderia procurar,
-
-                eu escolheria você
-                todas as vezes.
-
-            </p>
-
-
-            <p>
-
-                A distância pode separar
-                dois lugares,
-
-                mas nunca vai conseguir
-                separar duas pessoas
-                que escolheram ficar juntas.
-
-            </p>
-
-
-            <p class="love">
-                EU TE AMO. ❤️
-            </p>
-
-
-            <p class="signature">
-                — seu ladrão de corações
-            </p>
-
-
-            <button id="restart-btn"
-                    class="p5-button">
-
-                JOGAR NOVAMENTE
-
-            </button>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<script src="script.js"></script>
+    <script src="game.js"></script>
 
 </body>
 </html>
