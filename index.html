@@ -1,67 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Milenete's Shadow Heist</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div id="game-wrapper">
+    <!-- TELA INICIAL -->
+    <div id="startScreen" class="screen active">
 
-        <h1>MILENETE'S SHADOW HEIST</h1>
+        <div class="startBox">
 
-        <div id="hud">
-            <span>🦋 BIBBLE</span>
-            <span id="status">ESCORREGANDO PELAS SOMBRAS...</span>
-        </div>
+            <div class="butterfly">🦋</div>
 
-        <canvas id="game" width="800" height="500"></canvas>
+            <h1>MILENETE'S</h1>
+            <h2>SHADOW HEIST</h2>
 
-        <div id="controls">
-            WASD / SETAS — MOVER &nbsp; | &nbsp; ESC — RECOMEÇAR
+            <div class="line"></div>
+
+            <p class="subtitle">
+                UMA MISSÃO ESPECIAL PARA MILENETE
+            </p>
+
+            <p class="story">
+                Bibble entrou no mundo das sombras.
+                <br>
+                Agora ele precisa atravessar o palácio
+                <br>
+                sem ser descoberto.
+            </p>
+
+            <button onclick="startGame()">
+                ▶ INICIAR MISSÃO
+            </button>
+
+            <p class="controls">
+                WASD / SETAS PARA MOVER
+            </p>
+
         </div>
 
     </div>
 
-    <!-- Tela de derrota -->
-    <div id="game-over" class="screen">
-        <div class="screen-box">
-            <h2>VOCÊ FOI DESCOBERTO!</h2>
-            <p>As sombras encontraram o Bibble...</p>
-            <button onclick="restartGame()">TENTAR NOVAMENTE</button>
+
+    <!-- JOGO -->
+    <main id="gameContainer">
+
+        <header>
+
+            <div class="logo">
+                🦋 BIBBLE
+            </div>
+
+            <div id="alertText">
+                ● ESCONDIDO NAS SOMBRAS
+            </div>
+
+        </header>
+
+        <div id="gameFrame">
+
+            <canvas id="game" width="900" height="560"></canvas>
+
         </div>
+
+        <div class="bottomBar">
+
+            <span>
+                WASD / SETAS — MOVER
+            </span>
+
+            <span>
+                ♥ CHEGUE AO FINAL
+            </span>
+
+            <span>
+                ESC — REINICIAR
+            </span>
+
+        </div>
+
+    </main>
+
+
+    <!-- DERROTA -->
+    <div id="loseScreen" class="screen">
+
+        <div class="messageBox">
+
+            <div class="bigIcon">💀</div>
+
+            <h1>VOCÊ FOI DESCOBERTO</h1>
+
+            <p>
+                As sombras encontraram Bibble...
+            </p>
+
+            <button onclick="restartGame()">
+                ↻ TENTAR NOVAMENTE
+            </button>
+
+        </div>
+
     </div>
 
-    <!-- Tela de vitória -->
-    <div id="victory" class="screen">
-        <div class="victory-box">
 
-            <p class="small-title">MISSÃO COMPLETA</p>
+    <!-- VITÓRIA -->
+    <div id="winScreen" class="screen">
 
-            <h2>VOCÊ CONSEGUIU, BIBBLE! 🦋</h2>
+        <div class="winBox">
+
+            <p class="missionComplete">
+                ★ MISSION COMPLETE ★
+            </p>
+
+            <h1>VOCÊ CONSEGUIU!</h1>
+
+            <p class="forMilenete">
+                ESSE FINAL É PARA VOCÊ, MILENETE.
+            </p>
 
             <img
-                src="assets/foto-vitoria.jpg"
-                alt="Uma foto especial"
-                class="couple-photo"
+                src="foto.jpg"
+                class="couplePhoto"
+                alt="Foto especial"
             >
 
-            <p class="love-message">
-                Milenete, você é a minha pessoa favorita
-                em todos os universos. ❤️
+            <p class="loveText">
+                Milenete, eu atravessaria todos os palácios
+                <br>
+                desse mundo só para chegar até você. ❤️
             </p>
 
-            <p class="final-message">
-                Esse pequeno mundo foi feito especialmente para você.
+            <p class="smallText">
+                — Bibble, missão concluída.
             </p>
+
+            <button onclick="restartGame()">
+                ↻ JOGAR NOVAMENTE
+            </button>
 
         </div>
+
     </div>
+
 
     <script src="game.js"></script>
 
 </body>
+
 </html>
